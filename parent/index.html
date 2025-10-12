@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parent Dashboard - Kainos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="min-h-screen flex bg-[#fdf9f2] text-[#333]">
+    <!-- Sidebar -->
+    <aside
+      class="w-64 bg-white border-r border-gray-200 shadow-md hidden md:flex flex-col justify-between"
+    >
+      <div>
+        <!-- Logo -->
+        <div class="flex items-center space-x-2 p-6 border-b">
+          <img src="/KainosLogo.jpg" alt="Kainos Logo" class="h-10 w-10" />
+          <span class="text-2xl font-bold text-[#F47C2B]">Kainos</span>
+        </div>
+
+        <!-- Nav Links -->
+        <nav class="mt-6 flex flex-col space-y-1">
+          <a
+            href="/parent/index.html"
+            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
+            >Dashboard</a
+          >
+          <a
+            href="/parent/howtouse.html"
+            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
+            >How to Use</a
+          >
+          <a
+            href="/parent/subjects.html"
+            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
+            >Subjects</a
+          >
+          <a
+            href="/parent/grades.html"
+            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
+            >Grades</a
+          >
+          <a
+            href="/parent/balance.html"
+            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
+            >Balance</a
+            >
+           <a
+            href="/parent/.html"
+            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
+            >Announcements</a
+          >
+        </nav>
+      </div>
+
+      <!-- Profile -->
+      <div class="p-6 border-t">
+        <div class="flex items-center space-x-3">
+          <img
+            src="/assets/profile.png"
+            alt="Parent"
+            class="h-10 w-10 rounded-full border"
+          />
+          <div>
+            <p class="font-semibold text-[#1E4B87]">Parent Name</p>
+            <p class="text-sm text-gray-500">Parent</p>
+          </div>
+        </div>
+        <button
+          id="logout-btn"
+          class="mt-4 w-full text-sm bg-[#F47C2B] text-white font-semibold py-2 rounded-lg hover:bg-[#e36e21] transition"
+        >
+          Log Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 overflow-y-auto">
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-[#1E4B87]">Welcome, Parent!</h1>
+      </div>
+
+      <!-- Children Section -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-semibold text-[#1E4B87] mb-4">
+          My Children
+        </h2>
+        <div
+          id="childrenGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        ></div>
+      </section>
+
+      <!-- Announcements Section -->
+      <section>
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-[#1E4B87]">
+            Recent Announcements
+          </h2>
+          <a
+            href="/parent/announcements.html"
+            class="text-[#F47C2B] font-medium hover:underline"
+            >View All</a
+          >
+        </div>
+        <div
+          id="announcementGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        ></div>
+      </section>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+      // LocalStorage mock data
+      const children = JSON.parse(localStorage.getItem("students")) || [];
+      const announcements =
+        JSON.parse(localStorage.getItem("announcements")) || [];
+
+      const childrenGrid = document.getElementById("childrenGrid");
+      const announcementGrid = document.getElementById("announcementGrid");
+
+      // Render children (by grade)
+      const renderChildren = () => {
+        childrenGrid.innerHTML = "";
+        if (!children.length) {
+          childrenGrid.innerHTML =
+            '<p class="text-gray-500 col-span-full text-center">No children added yet.</p>';
+          return;
+        }
+
+        children
+          .sort((a, b) => a.grade - b.grade)
+          .forEach((child) => {
+            const card = document.createElement("div");
+            card.className =
+              "bg-white p-5 rounded-2xl shadow hover:shadow-lg transition flex flex-col items-center text-center";
+            card.innerHTML = `
+              <img src="${
+                child.photo || "/assets/default-avatar.png"
+              }" class="w-24 h-24 rounded-full object-cover mb-4 border">
+              <h3 class="text-xl font-semibold text-[#1E4B87]">${
+                child.name
+              }</h3>
+              <p class="text-gray-600">Grade ${child.grade}</p>
+              <p class="text-gray-500 text-sm mt-2">Progress: ${
+                child.progress || "Pending"
+              }</p>
+            `;
+            childrenGrid.appendChild(card);
+          });
+      };
+
+      // Render announcements (latest 3)
+      const renderAnnouncements = () => {
+        announcementGrid.innerHTML = "";
+        if (!announcements.length) {
+          announcementGrid.innerHTML =
+            '<p class="text-gray-500 col-span-full text-center">No announcements yet.</p>';
+          return;
+        }
+
+        announcements
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .slice(0, 3)
+          .forEach((a) => {
+            const card = document.createElement("div");
+            card.className =
+              "bg-white p-5 rounded-2xl shadow hover:shadow-lg transition";
+            card.innerHTML = `
+              ${
+                a.image
+                  ? `<img src="${a.image}" class="rounded-lg mb-3 w-full h-40 object-cover">`
+                  : ""
+              }
+              <h2 class="text-xl font-semibold text-[#1E4B87]">${a.title}</h2>
+              <p class="text-gray-600 text-sm mt-2">${a.desc}</p>
+              <p class="text-gray-500 text-xs mt-2">📅 ${a.date}</p>
+            `;
+            announcementGrid.appendChild(card);
+          });
+      };
+
+      renderChildren();
+      renderAnnouncements();
+    </script>
+  </body>
+</html>

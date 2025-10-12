@@ -1,107 +1,126 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Responsive Navbar</title>
-    <link rel="stylesheet" href="/style.css" />
+    <title>KMCAI</title>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #fdf9f2;
+        color: #333333;
+      }
+      h1, h2, h3, .nav-link {
+        font-family: 'Poppins', sans-serif;
+      }
+    </style>
   </head>
-  <body class="bg-gray-50">
+
+  <body class="bg-[#fdf9f2] min-h-screen flex flex-col">
     <!-- Navbar -->
-    <nav class="bg-white border-b border-gray-200 shadow-sm">
+    <nav class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
           <!-- Logo -->
-          <div class="flex-shrink-0">
-            <a href="#" class="text-2xl font-bold text-orange-400">Kainos</a>
+          <div class="flex items-center space-x-2">
+            <img src="/KainosLogo.jpg" alt="Kainos Logo" class="h-10 w-10" />
+            <a href="/" class="text-2xl font-bold text-[#F47C2B]">Kainos</a>
           </div>
 
           <!-- Desktop Menu -->
           <div class="hidden md:flex space-x-8">
-            <a href="#" class="text-gray-700 hover:text-orange font-medium"
-              >Dashboard</a
-            >
-            <a href="#" class="text-gray-700 hover:text-orange font-medium"
-              >Teachers</a
-            >
-            <a href="#" class="text-gray-700 hover:text-orange font-medium"
-              >Students</a
-            >
-            <a href="#" class="text-gray-700 hover:text-orange font-medium"
-              >Parents</a
-            >
-            <a href="#" class="text-gray-700 hover:text-orange font-medium"
-              >Announcements</a
-            >
+            <a href="/" class="nav-link text-[#1E4B87] hover:text-[#F47C2B]">Home</a>
+            <a href="/about.html" class="nav-link text-[#1E4B87] hover:text-[#F47C2B]">About</a>
+            <a href="/contact.html" class="nav-link text-[#1E4B87] hover:text-[#F47C2B]">Contact</a>
+            <a href="/admin/index.html" class="nav-link text-[#1E4B87] hover:text-[#F47C2B]">Admin</a>
           </div>
 
           <!-- Mobile Menu Button -->
-          <div class="md:hidden">
-            <button
-              id="menu-btn"
-              class="text-gray-700 hover:text-orange focus:outline-none"
+          <button
+            id="menu-btn"
+            class="md:hidden text-[#1E4B87] hover:text-[#F47C2B] focus:outline-none"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
             >
-              <!-- Hamburger icon -->
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-            </button>
-          </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
         </div>
       </div>
 
       <!-- Mobile Menu -->
       <div
         id="mobile-menu"
-        class="hidden md:hidden px-5 pt-5 pb-2 space-y-2 bg-white border-t transition-all duration-300 ease-in-out"
+        class="hidden md:hidden px-5 pt-4 pb-2 space-y-2 bg-white border-t transition-all duration-300 ease-in-out"
       >
-        <a
-          href="#"
-          class="block text-gray-700 hover:text-orange font-medium size-10"
-          >Dashboard</a
-        >
-        <a
-          href="#"
-          class="block text-gray-700 hover:text-orange font-medium size-10"
-          >Teachers</a
-        >
-        <a
-          href="#"
-          class="block text-gray-700 hover:text-orange font-medium size-10"
-          >Parents</a
-        >
-        <a
-          href="#"
-          class="block text-gray-700 hover:text-orange font-medium size-10"
-          >Students</a
-        >
-        <a
-          href="#"
-          class="block text-gray-700 hover:text-orange font-medium size-10"
-          >Announcements</a
-        >
+        <a href="/" class="block text-[#1E4B87] hover:text-[#F47C2B]">Home</a>
+        <a href="/about.html" class="block text-[#1E4B87] hover:text-[#F47C2B]">About</a>
+        <a href="/contact.html" class="block text-[#1E4B87] hover:text-[#F47C2B]">Contact</a>
+        <a href="/admin/index.html" class="block text-[#1E4B87] hover:text-[#F47C2B]">Admin</a>
       </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="dashboard-content">
-      <h1 class="text-3xl font-medium">
-        This is from root folder, this will be change to sign in page
-      </h1>
-    </div>
+    <!-- Main Content (Sign-In Section Placeholder) -->
+    <main class="flex-grow flex items-center justify-center p-6">
+      <div class="bg-white shadow-lg rounded-2xl p-8 max-w-md w-full">
+        <h1 class="text-3xl font-bold text-center text-[#1E4B87] mb-6">
+          Sign in to Kainos SMS
+        </h1>
+        <form class="space-y-5">
+          <div>
+            <label class="block font-semibold mb-1 text-[#333333]">Email</label>
+            <input
+              type="email"
+              placeholder="you@example.com"
+              class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#F47C2B] focus:outline-none"
+            />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-[#333333]">Password</label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#F47C2B] focus:outline-none"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-[#F47C2B] text-white font-semibold py-2.5 rounded-lg hover:bg-[#e36e21] transition"
+          >
+            Sign In
+          </button>
+        </form>
+        <p class="text-sm text-center text-gray-500 mt-4">
+          Don’t have an account?
+          <a href="/register.html" class="text-[#1E4B87] hover:underline">Register</a>
+        </p>
+      </div>
+    </main>
 
-    <script type="module" src="/src/main.js"></script>
+    <script>
+      // Toggle Mobile Menu
+      document.getElementById('menu-btn').addEventListener('click', () => {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+      });
+    </script>
   </body>
 </html>

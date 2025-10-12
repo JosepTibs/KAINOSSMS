@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subjects - Kainos Parent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="min-h-screen flex bg-[#fdf9f2] text-[#333]">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-gray-200 shadow-md hidden md:flex flex-col justify-between">
+      <div>
+        <!-- Logo -->
+        <div class="flex items-center space-x-2 p-6 border-b">
+          <img src="/KainosLogo.jpg" alt="Kainos Logo" class="h-10 w-10" />
+          <span class="text-2xl font-bold text-[#F47C2B]">Kainos</span>
+        </div>
+
+        <!-- Nav Links -->
+        <nav class="mt-6 flex flex-col space-y-1">
+          <a href="/parent/index.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">Dashboard</a>
+          <a href="/parent/howtouse.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">How to Use</a>
+          <a href="/parent/subjects.html" class="nav-link px-6 py-3 text-white bg-[#F47C2B] rounded-r-full font-semibold">Subjects</a>
+          <a href="/parent/grades.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">Grades</a>
+          <a href="/parent/balance.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">Balance</a>
+          <a href="/parent/announcements.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">Announcements</a>
+        </nav>
+      </div>
+
+      <!-- Profile -->
+      <div class="p-6 border-t">
+        <div class="flex items-center space-x-3">
+          <img src="/assets/profile.png" alt="Parent" class="h-10 w-10 rounded-full border" />
+          <div>
+            <p class="font-semibold text-[#1E4B87]">Parent Name</p>
+            <p class="text-sm text-gray-500">Parent</p>
+          </div>
+        </div>
+        <button id="logout-btn" class="mt-4 w-full text-sm bg-[#F47C2B] text-white font-semibold py-2 rounded-lg hover:bg-[#e36e21] transition">
+          Log Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-[#1E4B87]">Subjects</h1>
+      </div>
+
+      <!-- Subjects Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="/parent/subjects/english.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#1E4B87]">English</h2>
+          <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
+        </a>
+
+        <a href="/parent/subjects/math.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#1E4B87]">Math</h2>
+          <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
+        </a>
+
+        <a href="/parent/subjects/filipino.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#1E4B87]">Filipino</h2>
+          <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
+        </a>
+
+        <a href="/parent/subjects/ap.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#1E4B87]">Araling Panlipunan</h2>
+          <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
+        </a>
+
+        <a href="/parent/subjects/hele.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#1E4B87]">HELE</h2>
+          <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
+        </a>
+
+        <a href="/parent/subjects/cl.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#1E4B87]">Christian Living</h2>
+          <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
+        </a>
+
+        <a href="/parent/subjects/mapeh.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#1E4B87]">MAPEH</h2>
+          <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
+        </a>
+
+        <a href="/parent/subjects/science.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#1E4B87]">Science</h2>
+          <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>
