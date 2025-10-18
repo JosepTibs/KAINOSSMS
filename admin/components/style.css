@@ -1,0 +1,50 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fdf9f2;
+  color: #333333;
+}
+
+h1, h2, h3, .nav-link {
+  font-family: 'Poppins', sans-serif;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: #1e4b87;
+  border-radius: 9999px 0 0 9999px;
+  transition: 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #f47c2b;
+  color: white;
+}
+
+.active {
+  background-color: #f47c2b;
+  color: #fff !important;
+}
+
+.stat-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.25rem;
+  transition: box-shadow 0.3s;
+}
+
+.stat-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f47c2b;
+}
+
+.stat-card p {
+  color: #555;
+  margin-top: 0.5rem;
+}

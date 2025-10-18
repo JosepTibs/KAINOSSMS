@@ -9,150 +9,32 @@
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        font-family: 'Open Sans', sans-serif;
-        background-color: #fdf9f2;
-        color: #333333;
-      }
-      h1, h2, h3, .nav-link {
-        font-family: 'Poppins', sans-serif;
-      }
-      .active {
-        background-color: #f47c2b;
-        color: #fff !important;
-      }
-    </style>
+    <link rel="stylesheet" href="/admin/components/style.css" />
   </head>
 
-  <body class="min-h-screen flex">
-    <!-- Sidebar -->
-    <aside
-      class="w-64 bg-white border-r border-gray-200 shadow-md hidden md:flex flex-col justify-between"
-    >
-      <div>
-        <!-- Logo -->
-        <div class="flex items-center space-x-2 p-6 border-b">
-          <img src="/KainosLogo.jpg" alt="Kainos Logo" class="h-10 w-10" />
-          <span class="text-2xl font-bold text-[#F47C2B]">Kainos</span>
-        </div>
-
-        <!-- Nav Links -->
-        <nav class="mt-6 flex flex-col space-y-1">
-          <a href="/admin/index.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#f47c2b] hover:text-white rounded-r-full active">Dashboard</a>
-          <a href="/admin/teachers.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#f47c2b] hover:text-white rounded-r-full">Teachers</a>
-          <a href="/admin/students.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#f47c2b] hover:text-white rounded-r-full">Students</a>
-          <a href="/admin/parents.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#f47c2b] hover:text-white rounded-r-full">Parents</a>
-          <a href="/admin/announcements.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#f47c2b] hover:text-white rounded-r-full">Announcements</a>
-        </nav>
-      </div>
-
-      <!-- Profile -->
-      <div class="p-6 border-t">
-        <div class="flex items-center space-x-3">
-          <img src="/assets/profile.png" alt="Admin" class="h-10 w-10 rounded-full border" />
-          <div>
-            <p class="font-semibold text-[#1E4B87]">Admin Name</p>
-            <p class="text-sm text-gray-500">Administrator</p>
-          </div>
-        </div>
-        <button
-          id="logout-btn"
-          class="mt-4 w-full text-sm bg-[#F47C2B] text-white font-semibold py-2 rounded-lg hover:bg-[#e36e21] transition"
-        >
-          Log Out
-        </button>
-      </div>
-    </aside>
+  <body class="min-h-screen flex bg-[#fdf9f2] text-[#333]">
+    <!-- ✅ Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
 
     <!-- Main Content -->
-    <div class="flex-1 flex flex-col">
-      <!-- Top Navbar (Mobile) -->
-      <header
-        class="md:hidden flex items-center justify-between bg-white border-b px-4 py-3 shadow-sm sticky top-0 z-50"
-      >
-        <div class="flex items-center space-x-2">
-          <img src="/assets/logo.png" class="h-8 w-8" alt="Logo" />
-          <span class="text-xl font-bold text-[#F47C2B]">Kainos</span>
-        </div>
-        <button id="menu-toggle" class="text-[#1E4B87] focus:outline-none">
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </header>
-
-      <!-- Mobile Sidebar -->
-      <div id="mobile-sidebar" class="fixed inset-0 bg-black bg-opacity-40 hidden z-40">
-        <div
-          class="absolute left-0 top-0 h-full w-64 bg-white shadow-lg p-6 flex flex-col justify-between"
-        >
-          <div>
-            <div class="flex items-center space-x-2 mb-6">
-              <img src="/assets/logo.png" class="h-8 w-8" />
-              <span class="text-xl font-bold text-[#F47C2B]">Kainos</span>
-            </div>
-            <nav class="flex flex-col space-y-1">
-              <a href="/admin/index.html" class="px-4 py-2 rounded hover:bg-[#F47C2B] hover:text-white">Dashboard</a>
-              <a href="/admin/teachers.html" class="px-4 py-2 rounded hover:bg-[#F47C2B] hover:text-white">Teachers</a>
-              <a href="/admin/students.html" class="px-4 py-2 rounded hover:bg-[#F47C2B] hover:text-white">Students</a>
-              <a href="/admin/parents.html" class="px-4 py-2 rounded hover:bg-[#F47C2B] hover:text-white">Parents</a>
-              <a href="/admin/announcements.html" class="px-4 py-2 rounded hover:bg-[#F47C2B] hover:text-white">Announcements</a>
-            </nav>
-          </div>
-
-          <div>
-            <div class="flex items-center space-x-3">
-              <img src="/assets/profile.png" class="h-10 w-10 rounded-full border" />
-              <div>
-                <p class="font-semibold text-[#1E4B87]">Admin Name</p>
-                <p class="text-sm text-gray-500">Administrator</p>
-              </div>
-            </div>
-            <button class="mt-4 w-full text-sm bg-[#F47C2B] text-white font-semibold py-2 rounded-lg">
-              Log Out
-            </button>
-          </div>
-        </div>
-      </div>
+    <div class="flex-1 flex flex-col md:ml-64">
+      
 
       <!-- Dashboard Content -->
       <main class="p-6">
         <div class="flex justify-between items-center mb-6">
           <h1 class="text-3xl font-bold text-[#1E4B87]">Dashboard Overview</h1>
-         
         </div>
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
-            <h2 class="text-xl font-semibold text-[#F47C2B]">Teachers</h2>
-            <p class="text-gray-600 mt-2">12 Active</p>
-          </div>
-
-          <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
-            <h2 class="text-xl font-semibold text-[#F47C2B]">Students</h2>
-            <p class="text-gray-600 mt-2">250 Enrolled</p>
-          </div>
-
-          <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
-            <h2 class="text-xl font-semibold text-[#F47C2B]">Parents</h2>
-            <p class="text-gray-600 mt-2">230 Linked</p>
-          </div>
-
-          <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
-            <h2 class="text-xl font-semibold text-[#F47C2B]">Announcements</h2>
-            <p class="text-gray-600 mt-2">5 Posted</p>
-          </div>
+          <div class="stat-card"> <h2>Teachers</h2> <p>12 Active</p> </div>
+          <div class="stat-card"> <h2>Students</h2> <p>250 Enrolled</p> </div>
+          <div class="stat-card"> <h2>Parents</h2> <p>230 Linked</p> </div>
+          <div class="stat-card"> <h2>Announcements</h2> <p>5 Posted</p> </div>
         </div>
 
-        <!-- Announcements Placeholder -->
+        <!-- Announcements -->
         <section class="bg-white p-6 rounded-2xl shadow">
           <h2 class="text-2xl font-semibold text-[#1E4B87] mb-4">Recent Announcements</h2>
           <ul class="space-y-3">
@@ -164,27 +46,51 @@
               <p class="font-semibold text-[#F47C2B]">Midterm Exams Schedule</p>
               <p class="text-sm text-gray-600">Check the updated class timetable for exam coverage.</p>
             </li>
-            <li>
-              <p class="font-semibold text-[#F47C2B]">New Student Enrollment Opens Soon</p>
-              <p class="text-sm text-gray-600">Applications start next week. Inform interested parents.</p>
-            </li>
           </ul>
         </section>
       </main>
     </div>
 
-    <!-- Script -->
+    <!-- ✅ Script -->
     <script>
       const menuToggle = document.getElementById('menu-toggle');
       const mobileSidebar = document.getElementById('mobile-sidebar');
       menuToggle?.addEventListener('click', () => {
         mobileSidebar.classList.toggle('hidden');
       });
-
-      const logoutBtn = document.getElementById('logout-btn');
-      logoutBtn?.addEventListener('click', () => {
-        alert('Logging out... (Connect this to your authentication logic)');
-      });
     </script>
+    <!-- ✅ Load Shared Navbar -->
+    <script>
+      fetch("/admin/components/navbar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          const placeholder = document.getElementById("navbar-placeholder");
+          placeholder.innerHTML = html;
+
+          // ✅ Attach sidebar toggle logic AFTER navbar is loaded
+          const menuToggle = document.getElementById("menuToggle");
+          const mobileSidebar = document.getElementById("mobileSidebar");
+          const sidebarContent = document.getElementById("mobileSidebarContent");
+          const closeSidebar = document.getElementById("closeSidebar");
+
+          menuToggle?.addEventListener("click", () => {
+            mobileSidebar.classList.remove("hidden");
+            setTimeout(() => sidebarContent.classList.remove("-translate-x-full"), 10);
+          });
+
+          closeSidebar?.addEventListener("click", () => {
+            sidebarContent.classList.add("-translate-x-full");
+            setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+          });
+
+          mobileSidebar?.addEventListener("click", (e) => {
+            if (e.target === mobileSidebar) {
+              sidebarContent.classList.add("-translate-x-full");
+              setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+            }
+          });
+        });
+    </script>
+
   </body>
 </html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grades - Kainos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="min-h-screen flex bg-[#fdf9f2] text-[#333]">
+     <body class="min-h-screen bg-[#fdf9f2] text-[#333] relative">
+    <!-- ✅ Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col md:ml-64 p-6 overflow-y-auto">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-[#1E4B87]">Student Grades</h1>
+      </div>
+
+      <!-- Grade Level -->
+      <section class="bg-white p-6 rounded-2xl shadow mb-8">
+        <h2 class="text-xl font-semibold text-[#1E4B87] mb-2">
+          Grade Level: <span id="gradeLevel" class="font-normal text-gray-700">6</span>
+        </h2>
+      </section>
+
+      <!-- Grades Table -->
+      <section class="bg-white p-6 rounded-2xl shadow">
+        <h2 class="text-2xl font-semibold text-[#1E4B87] mb-4">Grades</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full border border-gray-300 rounded-lg overflow-hidden">
+            <thead class="bg-[#F47C2B] text-white">
+              <tr>
+                <th class="px-4 py-2 text-left">Subject</th>
+                <th class="px-4 py-2 text-center">1st Quarter</th>
+                <th class="px-4 py-2 text-center">2nd Quarter</th>
+                <th class="px-4 py-2 text-center">3rd Quarter</th>
+                <th class="px-4 py-2 text-center">4th Quarter</th>
+                <th class="px-4 py-2 text-center">Final Grade</th>
+              </tr>
+            </thead>
+            <tbody id="gradesTable" class="bg-white text-center text-gray-700"></tbody>
+            <tfoot class="bg-[#fef4ec] font-semibold text-[#1E4B87]">
+              <tr>
+                <td colspan="5" class="px-4 py-3 text-right">General Average:</td>
+                <td id="generalAverage" class="px-4 py-3"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+      // Sample student grade data
+      const studentGradeLevel = "Grade 6";
+      const gradesData = [
+        { subject: "English", q1: 90, q2: 92, q3: 91, q4: 89 },
+        { subject: "Math", q1: 88, q2: 90, q3: 89, q4: 91 },
+        { subject: "Filipino", q1: 87, q2: 88, q3: 90, q4: 89 },
+        { subject: "Araling Panlipunan", q1: 92, q2: 94, q3: 93, q4: 95 },
+        { subject: "HELE", q1: 89, q2: 90, q3: 92, q4: 91 },
+        { subject: "Christian Living", q1: 93, q2: 94, q3: 95, q4: 94 },
+        { subject: "MAPEH", q1: 91, q2: 90, q3: 93, q4: 92 },
+        { subject: "Science", q1: 88, q2: 90, q3: 91, q4: 92 },
+      ];
+
+      document.getElementById("gradeLevel").textContent = studentGradeLevel;
+      const gradesTable = document.getElementById("gradesTable");
+
+      // Render table rows
+      let totalFinal = 0;
+      gradesData.forEach((g) => {
+        const final = ((g.q1 + g.q2 + g.q3 + g.q4) / 4).toFixed(2);
+        totalFinal += parseFloat(final);
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="border px-4 py-2 text-left">${g.subject}</td>
+          <td class="border px-4 py-2">${g.q1}</td>
+          <td class="border px-4 py-2">${g.q2}</td>
+          <td class="border px-4 py-2">${g.q3}</td>
+          <td class="border px-4 py-2">${g.q4}</td>
+          <td class="border px-4 py-2 font-semibold text-[#1E4B87]">${final}</td>
+        `;
+        gradesTable.appendChild(row);
+      });
+
+      // Compute general average
+      const generalAverage = (totalFinal / gradesData.length).toFixed(2);
+      document.getElementById("generalAverage").textContent = generalAverage;
+    </script>
+    <!-- ✅ Load Shared Navbar -->
+    <script>
+      fetch("/parent/components/navbar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          const placeholder = document.getElementById("navbar-placeholder");
+          placeholder.innerHTML = html;
+
+          // ✅ Attach sidebar toggle logic AFTER navbar is loaded
+          const menuToggle = document.getElementById("menuToggle");
+          const mobileSidebar = document.getElementById("mobileSidebar");
+          const sidebarContent = document.getElementById("mobileSidebarContent");
+          const closeSidebar = document.getElementById("closeSidebar");
+
+          menuToggle?.addEventListener("click", () => {
+            mobileSidebar.classList.remove("hidden");
+            setTimeout(() => sidebarContent.classList.remove("-translate-x-full"), 10);
+          });
+
+          closeSidebar?.addEventListener("click", () => {
+            sidebarContent.classList.add("-translate-x-full");
+            setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+          });
+
+          mobileSidebar?.addEventListener("click", (e) => {
+            if (e.target === mobileSidebar) {
+              sidebarContent.classList.add("-translate-x-full");
+              setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+            }
+          });
+        });
+    </script>
+
+  </body>
+</html>

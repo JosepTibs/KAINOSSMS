@@ -1,0 +1,96 @@
+<!-- Sidebar (Desktop) -->
+<aside
+  class="w-64 bg-white border-r border-gray-200 shadow-md hidden md:flex flex-col justify-between fixed top-0 bottom-0 left-0"
+>
+  <div>
+    <div class="flex items-center space-x-2 p-6 border-b">
+      <img src="/KainosLogo.jpg" alt="Kainos Logo" class="h-10 w-10" />
+      <span class="text-2xl font-bold text-[#F47C2B]">Kainos</span>
+    </div>
+
+    <nav class="mt-6 flex flex-col space-y-1">
+      <a href="/admin/index.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Dashboard</a>
+      <a href="/admin/teachers.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Teachers</a>
+      <a href="/admin/parents.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Parents</a>
+      <a href="/admin/students.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Students</a>
+      <a href="/admin/balance.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Balance</a>
+      <a href="/admin/announcements.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Announcements</a>
+    </nav>
+  </div>
+
+  <div class="p-6 border-t">
+    <div class="flex items-center space-x-3">
+      <img src="/assets/profile.png" alt="Parent" class="h-10 w-10 rounded-full border" />
+      <div>
+        <p class="font-semibold text-[#1E4B87]">Parent Name</p>
+        <p class="text-sm text-gray-500">Parent</p>
+      </div>
+    </div>
+    <button
+      id="logout-btn"
+      class="mt-4 w-full text-sm bg-[#F47C2B] text-white font-semibold py-2 rounded-lg hover:bg-[#e36e21] transition"
+    >
+      Log Out
+    </button>
+  </div>
+</aside>
+
+<!-- Mobile Header -->
+<header class="md:hidden flex items-center justify-between p-4 bg-white shadow fixed top-0 left-0 right-0 z-20">
+  <div class="flex items-center space-x-2">
+    <img src="/public/KainosLogo.png" class="h-8 w-8" />
+    <span class="text-xl font-bold text-[#F47C2B]">Kainos</span>
+  </div>
+  <button id="menuToggle" class="text-2xl text-[#1E4B87]">☰</button>
+</header>
+
+<!-- Mobile Sidebar Modal -->
+<div id="mobileSidebar" class="hidden fixed inset-0 bg-black bg-opacity-50 z-30">
+  <div
+    id="mobileSidebarContent"
+    class="bg-white w-64 h-full shadow-md transform -translate-x-full transition-transform duration-300 flex flex-col justify-between"
+  >
+    <div>
+      <div class="flex items-center justify-between p-4 border-b">
+        <span class="text-xl font-bold text-[#F47C2B]">Kainos</span>
+        <button id="closeSidebar" class="text-xl text-[#1E4B87]">✕</button>
+      </div>
+
+      <nav class="mt-6 flex flex-col space-y-1">
+        <a href="/admin/index.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Dashboard</a>
+      <a href="/admin/teachers.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Teachers</a>
+      <a href="/admin/parents.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Parents</a>
+      <a href="/admin/students.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Students</a>
+      <a href="/admin/balance.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Balance</a>
+      <a href="/admin/announcements.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full font-semibold">Announcements</a>
+    </nav>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Sidebar Toggle Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileSidebar = document.getElementById("mobileSidebar");
+    const sidebarContent = document.getElementById("mobileSidebarContent");
+    const closeSidebar = document.getElementById("closeSidebar");
+
+    menuToggle?.addEventListener("click", () => {
+      mobileSidebar.classList.remove("hidden");
+      setTimeout(() => sidebarContent.classList.remove("-translate-x-full"), 10);
+    });
+
+    closeSidebar?.addEventListener("click", () => {
+      sidebarContent.classList.add("-translate-x-full");
+      setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+    });
+
+    mobileSidebar?.addEventListener("click", (e) => {
+      if (e.target === mobileSidebar) {
+        sidebarContent.classList.add("-translate-x-full");
+        setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+      }
+    });
+  });
+</script>

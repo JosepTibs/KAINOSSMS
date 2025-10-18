@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Classes — Kainos Teacher</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/public/KainosLogo.png">
+  </head>
+
+  <body class="min-h-screen bg-[#fdf9f2] text-[#333] relative">
+    <!-- ✅ Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- ✅ Main Content -->
+    <main class="pt-16 md:pt-0 md:ml-64 p-6 transition-all duration-300">
+      <div class="flex justify-between items-center mb-6 p-6">
+        <h1 class="text-3xl font-bold text-[#1E4B87]">My Classes</h1>
+        <button
+          id="addClassBtn"
+          class="bg-[#F47C2B] text-white px-4 py-2 rounded-lg hover:bg-[#e26e1d] transition"
+        >
+          + Add Class
+        </button>
+      </div>
+
+      <!-- 🧑‍🏫 Classes Grid -->
+      <div
+        id="classesGrid"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      ></div>
+    </main>
+
+    <!-- 🪟 Add Class Modal -->
+    <div
+      id="addClassModal"
+      class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50"
+    >
+      <div
+        class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md transform scale-95 transition-all"
+      >
+        <h2 class="text-2xl font-semibold text-[#1E4B87] mb-4">
+          Add New Class
+        </h2>
+
+        <form id="addClassForm" class="space-y-4">
+          <!-- Subject Dropdown -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Subject</label>
+            <select
+              id="subjectName"
+              class="w-full border border-gray-300 rounded-lg p-2 focus:ring-[#1E4B87] focus:border-[#1E4B87]"
+              required
+            >
+              <option value="" disabled selected>Select a subject</option>
+              <option value="English">English</option>
+              <option value="Math">Math</option>
+              <option value="Filipino">Filipino</option>
+              <option value="Araling Panlipunan">Araling Panlipunan</option>
+              <option value="HELE">HELE</option>
+              <option value="Christian Living">Christian Living</option>
+              <option value="MAPEH">MAPEH</option>
+              <option value="Science">Science</option>
+            </select>
+          </div>
+
+          <!-- Grade Level Dropdown -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Grade Level</label
+            >
+            <select
+              id="gradeLevel"
+              class="w-full border border-gray-300 rounded-lg p-2 focus:ring-[#1E4B87] focus:border-[#1E4B87]"
+              required
+            >
+              <option value="" disabled selected>Select grade level</option>
+              <option value="1">Grade 1</option>
+              <option value="2">Grade 2</option>
+              <option value="3">Grade 3</option>
+              <option value="4">Grade 4</option>
+              <option value="5">Grade 5</option>
+              <option value="6">Grade 6</option>
+            </select>
+          </div>
+
+          <!-- Optional Description -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Description (optional)</label
+            >
+            <textarea
+              id="description"
+              class="w-full border border-gray-300 rounded-lg p-2 focus:ring-[#1E4B87] focus:border-[#1E4B87]"
+              placeholder="Write a short note about this class"
+            ></textarea>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex justify-end space-x-3 pt-4">
+            <button
+              type="button"
+              id="cancelAdd"
+              class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 rounded-lg bg-[#1E4B87] text-white hover:bg-[#163868]"
+            >
+              Save Class
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ✅ Load Shared Navbar -->
+    <script>
+      fetch("/teacher/components/navbar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("navbar-placeholder").innerHTML = html;
+        });
+    </script>
+
+    <!-- ✅ Page Script -->
+    <script type="module">
+      import { addClass, getClasses } from "./classesSupabase.js";
+
+      const addClassBtn = document.getElementById("addClassBtn");
+      const addClassModal = document.getElementById("addClassModal");
+      const cancelAdd = document.getElementById("cancelAdd");
+      const addClassForm = document.getElementById("addClassForm");
+      const classesGrid = document.getElementById("classesGrid");
+
+      const teacherId = "6c70c2f1-d5a0-4c88-8e2e-ef3479df6c4a"; // Later: replace with Supabase auth user ID
+
+      // 🧭 Open modal
+      addClassBtn.addEventListener("click", () => {
+        addClassModal.classList.remove("hidden");
+        addClassModal.classList.add("flex");
+      });
+
+      // ❌ Close modal
+      cancelAdd.addEventListener("click", () => {
+        addClassModal.classList.add("hidden");
+        addClassModal.classList.remove("flex");
+        addClassForm.reset();
+      });
+
+      // 🧠 Handle form submission
+      addClassForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const subject = document.getElementById("subjectName").value;
+        const grade_level = document.getElementById("gradeLevel").value;
+        const description = document.getElementById("description").value || "";
+
+        try {
+          await addClass({ subject, grade_level, description, teacher_id: teacherId });
+          alert("✅ Class added successfully!");
+          addClassModal.classList.add("hidden");
+          addClassModal.classList.remove("flex");
+          addClassForm.reset();
+          await loadClasses();
+        } catch (err) {
+          console.error(err.message);
+          alert("❌ Failed to add class.");
+        }
+      });
+
+      // 🧱 Load classes
+      async function loadClasses() {
+        classesGrid.innerHTML = `<p class="text-gray-500 text-center">Loading...</p>`;
+        try {
+          const classes = await getClasses(teacherId);
+          if (!classes.length) {
+            classesGrid.innerHTML = `<p class="text-gray-500 text-center">No classes yet.</p>`;
+            return;
+          }
+          classesGrid.innerHTML = "";
+          classes.forEach((cls) => {
+            const div = document.createElement("div");
+            div.className =
+              "bg-white rounded-2xl shadow-md p-5 hover:shadow-lg transition cursor-pointer";
+            div.innerHTML = `
+              <h3 class="text-xl font-semibold text-[#1E4B87]">${cls.subject}</h3>
+              <p class="text-gray-600 text-sm mt-1">Grade: ${cls.grade_level}</p>
+              <p class="text-gray-500 text-sm mt-2">${cls.description || ""}</p>
+            `;
+            classesGrid.appendChild(div);
+          });
+        } catch (err) {
+          console.error("Error loading classes:", err.message);
+          classesGrid.innerHTML =
+            `<p class="text-red-500 text-center">Failed to load classes.</p>`;
+        }
+      }
+
+      loadClasses();
+    </script>
+  </body>
+</html>

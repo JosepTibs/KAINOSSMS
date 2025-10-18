@@ -3,281 +3,97 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Announcements - Kainos Admin</title>
+    <title>Announcements - Kainos</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body class="min-h-screen flex bg-[#fdf9f2] text-[#333]">
-    <!-- Sidebar -->
-    <aside
-      class="w-64 bg-white border-r border-gray-200 shadow-md hidden md:flex flex-col justify-between"
-    >
-      <div>
-        <!-- Logo -->
-        <div class="flex items-center space-x-2 p-6 border-b">
-          <img src="/KainosLogo.jpg" alt="Kainos Logo" class="h-10 w-10" />
-          <span class="text-2xl font-bold text-[#F47C2B]">Kainos</span>
-        </div>
+  <body class="min-h-screen bg-[#fdf9f2] text-[#333] relative">
+    <!-- ✅ Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
 
-        <!-- Nav Links -->
-        <nav class="mt-6 flex flex-col space-y-1">
-          <a
-            href="/parent/index.html"
-            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
-            >Dashboard</a
-          >
-          <a
-            href="/parent/howtouse.html"
-            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
-            >How to Use</a
-          >
-          <a
-            href="/parent/subjects.html"
-            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
-            >Subjects</a
-          >
-          <a
-            href="/parent/grades.html"
-            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
-            >Grades</a
-          >
-          <a
-            href="/parent/balance.html"
-            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
-            >Balance</a
-          >  
-           <a
-            href="/parent/announcements.html"
-            class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full"
-            >Announcements</a
-          >
-        </nav>
-      </div>
 
-      <!-- Profile -->
-      <div class="p-6 border-t">
-        <div class="flex items-center space-x-3">
-          <img
-            src="/assets/profile.png"
-            alt="Admin"
-            class="h-10 w-10 rounded-full border"
-          />
-          <div>
-            <p class="font-semibold text-[#1E4B87]">Admin Name</p>
-            <p class="text-sm text-gray-500">Administrator</p>
-          </div>
-        </div>
-        <button
-          id="logout-btn"
-          class="mt-4 w-full text-sm bg-[#F47C2B] text-white font-semibold py-2 rounded-lg hover:bg-[#e36e21] transition"
-        >
-          Log Out
-        </button>
-      </div>
-    </aside>
 
     <!-- Main Content -->
-    <main class="flex-1 p-6">
+    <main class="flex-1 p-6 overflow-y-auto">
       <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-[#1E4B87]">Announcements</h1>
-        
       </div>
 
       <!-- Announcements Grid -->
-      <div
-        id="announcementGrid"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-      ></div>
+      <div id="announcementGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </main>
-
-    <!-- Modal -->
-    <div
-      id="announcementModal"
-      class="hidden fixed inset-0 bg-black bg-opacity-40 items-center justify-center z-50"
-    >
-      <div class="bg-white w-full max-w-lg p-6 rounded-2xl shadow-lg">
-        <h2 id="modalTitle" class="text-2xl font-semibold text-[#1E4B87] mb-4">
-          Add Announcement
-        </h2>
-        <form id="announcementForm" class="space-y-4">
-          <input type="hidden" id="announcementId" />
-          <div>
-            <label class="block text-sm font-medium">Title</label>
-            <input
-              id="announcementTitle"
-              type="text"
-              required
-              class="mt-1 w-full border rounded-lg px-4 py-2"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Description</label>
-            <textarea
-              id="announcementDesc"
-              rows="3"
-              required
-              class="mt-1 w-full border rounded-lg px-4 py-2"
-            ></textarea>
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Date</label>
-            <input
-              id="announcementDate"
-              type="date"
-              required
-              class="mt-1 w-full border rounded-lg px-4 py-2"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Image (optional)</label>
-            <input id="announcementImage" type="file" accept="image/*" />
-            <img
-              id="imagePreview"
-              class="mt-3 w-full max-h-48 object-cover rounded-lg hidden"
-            />
-          </div>
-          <div class="flex justify-end space-x-3">
-            <button
-              type="button"
-              id="cancelAnnouncementModal"
-              class="px-4 py-2 bg-gray-200 rounded-lg"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              class="px-4 py-2 bg-[#F47C2B] text-white rounded-lg"
-            >
-              Save
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
 
     <!-- JavaScript -->
     <script>
-      const modal = document.getElementById("announcementModal");
-      const addBtn = document.getElementById("addAnnouncementBtn");
-      const cancelBtn = document.getElementById("cancelAnnouncementModal");
-      const form = document.getElementById("announcementForm");
       const grid = document.getElementById("announcementGrid");
-      const imageInput = document.getElementById("announcementImage");
-      const preview = document.getElementById("imagePreview");
-
-      let announcements = JSON.parse(localStorage.getItem("announcements")) || [];
-      let uploadedImage = "";
-
-      const saveData = () =>
-        localStorage.setItem("announcements", JSON.stringify(announcements));
+      const announcements = JSON.parse(localStorage.getItem("announcements")) || [];
 
       const renderAnnouncements = () => {
         grid.innerHTML = "";
+
         if (!announcements.length) {
-          grid.innerHTML =
-            '<p class="text-gray-500 col-span-full text-center">No announcements yet.</p>';
+          grid.innerHTML = `
+            <p class="text-gray-500 col-span-full text-center bg-white p-6 rounded-2xl shadow">
+              No announcements yet.
+            </p>`;
           return;
         }
-        announcements.forEach((a) => {
-          const card = document.createElement("div");
-          card.className =
-            "bg-white p-5 rounded-2xl shadow hover:shadow-lg transition";
-          card.innerHTML = `
-            ${
-              a.image
-                ? `<img src="${a.image}" class="rounded-lg mb-3 w-full h-40 object-cover">`
-                : ""
-            }
-            <h2 class="text-xl font-semibold text-[#1E4B87]">${a.title}</h2>
-            <p class="text-gray-600 text-sm mt-2">${a.desc}</p>
-            <p class="text-gray-500 text-xs mt-2">📅 ${a.date}</p>
-            <div class="flex justify-end mt-4 space-x-3">
-              <button class="text-[#1E4B87]" onclick="editAnnouncement(${
-                a.id
-              })">✏️</button>
-              <button class="text-red-500" onclick="deleteAnnouncement(${
-                a.id
-              })">🗑️</button>
-            </div>`;
-          grid.appendChild(card);
-        });
-      };
 
-      // Image preview
-      imageInput.onchange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (ev) => {
-            uploadedImage = ev.target.result;
-            preview.src = uploadedImage;
-            preview.classList.remove("hidden");
-          };
-          reader.readAsDataURL(file);
-        }
-      };
-
-      // Modal handling
-      addBtn.onclick = () => {
-        form.reset();
-        uploadedImage = "";
-        preview.classList.add("hidden");
-        document.getElementById("announcementId").value = "";
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-      };
-
-      cancelBtn.onclick = () => {
-        modal.classList.add("hidden");
-      };
-
-      // Save announcement
-      form.onsubmit = (e) => {
-        e.preventDefault();
-        const id = document.getElementById("announcementId").value;
-        const data = {
-          id: id || Date.now(),
-          title: document.getElementById("announcementTitle").value,
-          desc: document.getElementById("announcementDesc").value,
-          date: document.getElementById("announcementDate").value,
-          image: uploadedImage,
-        };
-        if (id)
-          announcements = announcements.map((a) => (a.id == id ? data : a));
-        else announcements.push(data);
-
-        saveData();
-        renderAnnouncements();
-        modal.classList.add("hidden");
-      };
-
-      // Edit announcement
-      window.editAnnouncement = (id) => {
-        const a = announcements.find((x) => x.id == id);
-        document.getElementById("announcementId").value = a.id;
-        document.getElementById("announcementTitle").value = a.title;
-        document.getElementById("announcementDesc").value = a.desc;
-        document.getElementById("announcementDate").value = a.date;
-        uploadedImage = a.image;
-
-        if (uploadedImage) {
-          preview.src = uploadedImage;
-          preview.classList.remove("hidden");
-        }
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-      };
-
-      // Delete announcement
-      window.deleteAnnouncement = (id) => {
-        if (confirm("Delete this announcement?")) {
-          announcements = announcements.filter((a) => a.id != id);
-          saveData();
-          renderAnnouncements();
-        }
+        announcements
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .forEach((a) => {
+            const card = document.createElement("div");
+            card.className =
+              "bg-white p-5 rounded-2xl shadow hover:shadow-lg transition";
+            card.innerHTML = `
+              ${
+                a.image
+                  ? `<img src="${a.image}" class="rounded-lg mb-3 w-full h-40 object-cover">`
+                  : ""
+              }
+              <h2 class="text-xl font-semibold text-[#1E4B87]">${a.title}</h2>
+              <p class="text-gray-600 text-sm mt-2">${a.desc}</p>
+              <p class="text-gray-500 text-xs mt-2">📅 ${a.date}</p>
+            `;
+            grid.appendChild(card);
+          });
       };
 
       renderAnnouncements();
     </script>
+    <!-- ✅ Load Shared Navbar -->
+    <script>
+      fetch("/parent/components/navbar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          const placeholder = document.getElementById("navbar-placeholder");
+          placeholder.innerHTML = html;
+
+          // ✅ Attach sidebar toggle logic AFTER navbar is loaded
+          const menuToggle = document.getElementById("menuToggle");
+          const mobileSidebar = document.getElementById("mobileSidebar");
+          const sidebarContent = document.getElementById("mobileSidebarContent");
+          const closeSidebar = document.getElementById("closeSidebar");
+
+          menuToggle?.addEventListener("click", () => {
+            mobileSidebar.classList.remove("hidden");
+            setTimeout(() => sidebarContent.classList.remove("-translate-x-full"), 10);
+          });
+
+          closeSidebar?.addEventListener("click", () => {
+            sidebarContent.classList.add("-translate-x-full");
+            setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+          });
+
+          mobileSidebar?.addEventListener("click", (e) => {
+            if (e.target === mobileSidebar) {
+              sidebarContent.classList.add("-translate-x-full");
+              setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+            }
+          });
+        });
+    </script>
+
   </body>
 </html>

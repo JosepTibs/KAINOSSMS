@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard — Kainos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="min-h-screen bg-[#fdf9f2] text-[#333] relative">
+    <!-- ✅ Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- ✅ Mobile Header -->
+    <header
+      class="md:hidden flex items-center justify-between bg-white border-b px-4 py-3 shadow-sm sticky top-0 z-30"
+    >
+      <div class="flex items-center space-x-2">
+        <img src="/public/KainosLogo.png" alt="Kainos Logo" class="h-8 w-8" />
+        <span class="text-xl font-bold text-[#F47C2B]">Kainos</span>
+      </div>
+      <button id="menuToggle" class="text-[#1E4B87] focus:outline-none">
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </header>
+
+    <!-- ✅ Main Content -->
+    <main class="pt-16 md:pt-0 md:ml-64 p-6 overflow-y-auto transition-all duration-300">
+      <h1 class="text-3xl font-bold text-[#1E4B87] mb-6">Welcome, Teacher!</h1>
+
+      <!-- 📊 Overview -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#F47C2B]">My Classes</h2>
+          <p class="text-gray-600 mt-2">You have 3 active classes.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#F47C2B]">Students</h2>
+          <p class="text-gray-600 mt-2">87 students enrolled.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#F47C2B]">Announcements</h2>
+          <p class="text-gray-600 mt-2">2 new posts this week.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold text-[#F47C2B]">Pending Grades</h2>
+          <p class="text-gray-600 mt-2">1 class needs update.</p>
+        </div>
+      </section>
+
+      <!-- 📚 Classes -->
+      <section class="bg-white p-6 rounded-2xl shadow mb-8">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-[#1E4B87]">My Classes</h2>
+          <button class="bg-[#F47C2B] text-white px-4 py-2 rounded-lg hover:bg-[#e36e21] transition">
+            + Create Class
+          </button>
+        </div>
+        <p class="text-gray-500">No classes created yet.</p>
+      </section>
+
+      <!-- 📢 Announcements -->
+      <section class="bg-white p-6 rounded-2xl shadow mb-8">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-[#1E4B87]">Recent Announcements</h2>
+          <a href="/teacher/announcements.html" class="text-[#F47C2B] hover:underline">View All</a>
+        </div>
+        <p class="text-gray-500">No announcements yet.</p>
+      </section>
+
+      <!-- 🧾 Grades -->
+      <section class="bg-white p-6 rounded-2xl shadow">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-[#1E4B87]">Grades Summary</h2>
+          <button class="bg-[#1E4B87] text-white px-4 py-2 rounded-lg hover:bg-[#163a6a] transition">
+            Upload Grades
+          </button>
+        </div>
+        <p class="text-gray-500">No grades uploaded yet.</p>
+      </section>
+    </main>
+
+    <!-- ✅ Sidebar Script Loader -->
+    <script>
+      fetch("/teacher/components/navbar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          const placeholder = document.getElementById("navbar-placeholder");
+          placeholder.innerHTML = html;
+
+          // Sidebar logic
+          const menuToggle = document.getElementById("menuToggle");
+          const mobileSidebar = document.getElementById("mobileSidebar");
+          const sidebarContent = document.getElementById("mobileSidebarContent");
+          const closeSidebar = document.getElementById("closeSidebar");
+
+          menuToggle?.addEventListener("click", () => {
+            mobileSidebar.classList.remove("hidden");
+            setTimeout(() => sidebarContent.classList.remove("-translate-x-full"), 10);
+          });
+
+          closeSidebar?.addEventListener("click", () => {
+            sidebarContent.classList.add("-translate-x-full");
+            setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+          });
+
+          mobileSidebar?.addEventListener("click", (e) => {
+            if (e.target === mobileSidebar) {
+              sidebarContent.classList.add("-translate-x-full");
+              setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+            }
+          });
+        });
+    </script>
+  </body>
+</html>

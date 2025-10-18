@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Balance - Kainos Parent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="min-h-screen flex bg-[#fdf9f2] text-[#333]">
+  <body class="min-h-screen bg-[#fdf9f2] text-[#333] relative">
+    <!-- ✅ Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col md:ml-64 p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-[#1E4B87]">Balance Overview</h1>
+      </div>
+
+      <!-- Balance Summary -->
+      <div class="bg-white rounded-2xl shadow-md p-6 mb-6">
+        <h2 class="text-2xl font-semibold text-[#1E4B87] mb-4">Balance Breakdown</h2>
+        <div class="space-y-3">
+          <div class="flex justify-between text-lg">
+            <span>Tuition Fee</span>
+            <span id="tuitionFee" class="font-semibold text-[#1E4B87]">₱25,000.00</span>
+          </div>
+          <div class="flex justify-between text-lg">
+            <span>Miscellaneous Fees</span>
+            <span id="miscFee" class="font-semibold text-[#1E4B87]">₱5,000.00</span>
+          </div>
+          <hr />
+          <div class="flex justify-between text-xl font-bold">
+            <span>Total</span>
+            <span id="totalFee" class="text-[#F47C2B]">₱30,000.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Plan -->
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <h2 class="text-2xl font-semibold text-[#1E4B87] mb-4">Tuition Payment Plan</h2>
+
+        <div class="mb-4">
+          <p class="text-lg">Payment Type: <span class="font-semibold text-[#F47C2B]">Monthly</span></p>
+          <p class="text-gray-600 mt-1 text-sm">Payments are due within the 1st week of every month.</p>
+        </div>
+
+        <div class="bg-[#fdf2e9] border border-[#F47C2B] rounded-xl p-4 mt-4">
+          <h3 class="font-semibold text-[#1E4B87]">Next Payment Schedule</h3>
+          <p id="nextPaymentDate" class="text-[#F47C2B] font-semibold mt-2 text-lg"></p>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Tuition and Misc fees
+      const tuition = 25000;
+      const misc = 5000;
+      const total = tuition + misc;
+      document.getElementById("tuitionFee").textContent = `₱${tuition.toLocaleString()}.00`;
+      document.getElementById("miscFee").textContent = `₱${misc.toLocaleString()}.00`;
+      document.getElementById("totalFee").textContent = `₱${total.toLocaleString()}.00`;
+
+      // Compute next payment month
+      const today = new Date();
+      const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+      const monthName = nextMonth.toLocaleString("default", { month: "long" });
+      const year = nextMonth.getFullYear();
+      const paymentRange = `${monthName} 1–7, ${year}`;
+      document.getElementById("nextPaymentDate").textContent = `Next Payment: ${paymentRange}`;
+    </script>
+    <!-- ✅ Load Shared Navbar -->
+    <script>
+      fetch("/parent/components/navbar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          const placeholder = document.getElementById("navbar-placeholder");
+          placeholder.innerHTML = html;
+
+          // ✅ Attach sidebar toggle logic AFTER navbar is loaded
+          const menuToggle = document.getElementById("menuToggle");
+          const mobileSidebar = document.getElementById("mobileSidebar");
+          const sidebarContent = document.getElementById("mobileSidebarContent");
+          const closeSidebar = document.getElementById("closeSidebar");
+
+          menuToggle?.addEventListener("click", () => {
+            mobileSidebar.classList.remove("hidden");
+            setTimeout(() => sidebarContent.classList.remove("-translate-x-full"), 10);
+          });
+
+          closeSidebar?.addEventListener("click", () => {
+            sidebarContent.classList.add("-translate-x-full");
+            setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+          });
+
+          mobileSidebar?.addEventListener("click", (e) => {
+            if (e.target === mobileSidebar) {
+              sidebarContent.classList.add("-translate-x-full");
+              setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+            }
+          });
+        });
+    </script>
+
+  </body>
+</html>

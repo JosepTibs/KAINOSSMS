@@ -7,90 +7,169 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body class="min-h-screen flex bg-[#fdf9f2] text-[#333]">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white border-r border-gray-200 shadow-md hidden md:flex flex-col justify-between">
-      <div>
-        <!-- Logo -->
-        <div class="flex items-center space-x-2 p-6 border-b">
-          <img src="/KainosLogo.jpg" alt="Kainos Logo" class="h-10 w-10" />
-          <span class="text-2xl font-bold text-[#F47C2B]">Kainos</span>
-        </div>
+  <body class="min-h-screen bg-[#fdf9f2] text-[#333] relative">
+    <!-- ✅ Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
 
-        <!-- Nav Links -->
-        <nav class="mt-6 flex flex-col space-y-1">
-          <a href="/parent/index.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">Dashboard</a>
-          <a href="/parent/howtouse.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">How to Use</a>
-          <a href="/parent/subjects.html" class="nav-link px-6 py-3 text-white bg-[#F47C2B] rounded-r-full font-semibold">Subjects</a>
-          <a href="/parent/grades.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">Grades</a>
-          <a href="/parent/balance.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">Balance</a>
-          <a href="/parent/announcements.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">Announcements</a>
-        </nav>
-      </div>
-
-      <!-- Profile -->
-      <div class="p-6 border-t">
-        <div class="flex items-center space-x-3">
-          <img src="/assets/profile.png" alt="Parent" class="h-10 w-10 rounded-full border" />
-          <div>
-            <p class="font-semibold text-[#1E4B87]">Parent Name</p>
-            <p class="text-sm text-gray-500">Parent</p>
-          </div>
-        </div>
-        <button id="logout-btn" class="mt-4 w-full text-sm bg-[#F47C2B] text-white font-semibold py-2 rounded-lg hover:bg-[#e36e21] transition">
-          Log Out
-        </button>
-      </div>
-    </aside>
-
+     
     <!-- Main Content -->
-    <main class="flex-1 p-6">
+    <main class="flex-1 flex flex-col md:ml-64 p-6">
       <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-[#1E4B87]">Subjects</h1>
+        <h1 class="text-3xl font-bold text-[#1E4B87]" id="subjectTitle">Subjects</h1>
       </div>
 
       <!-- Subjects Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <a href="/parent/subjects/english.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <div id="subjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <button data-subject="English" class="subject-card bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition text-left">
           <h2 class="text-xl font-semibold text-[#1E4B87]">English</h2>
           <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
-        </a>
+        </button>
 
-        <a href="/parent/subjects/math.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+        <button data-subject="Math" class="subject-card bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition text-left">
           <h2 class="text-xl font-semibold text-[#1E4B87]">Math</h2>
           <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
-        </a>
+        </button>
 
-        <a href="/parent/subjects/filipino.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+        <button data-subject="Filipino" class="subject-card bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition text-left">
           <h2 class="text-xl font-semibold text-[#1E4B87]">Filipino</h2>
           <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
-        </a>
+        </button>
 
-        <a href="/parent/subjects/ap.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+        <button data-subject="Araling Panlipunan" class="subject-card bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition text-left">
           <h2 class="text-xl font-semibold text-[#1E4B87]">Araling Panlipunan</h2>
           <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
-        </a>
+        </button>
 
-        <a href="/parent/subjects/hele.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+        <button data-subject="HELE" class="subject-card bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition text-left">
           <h2 class="text-xl font-semibold text-[#1E4B87]">HELE</h2>
           <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
-        </a>
+        </button>
 
-        <a href="/parent/subjects/cl.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+        <button data-subject="Christian Living" class="subject-card bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition text-left">
           <h2 class="text-xl font-semibold text-[#1E4B87]">Christian Living</h2>
           <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
-        </a>
+        </button>
 
-        <a href="/parent/subjects/mapeh.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+        <button data-subject="MAPEH" class="subject-card bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition text-left">
           <h2 class="text-xl font-semibold text-[#1E4B87]">MAPEH</h2>
           <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
-        </a>
+        </button>
 
-        <a href="/parent/subjects/science.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+        <button data-subject="Science" class="subject-card bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition text-left">
           <h2 class="text-xl font-semibold text-[#1E4B87]">Science</h2>
           <p class="text-gray-500 mt-2 text-sm">View lessons, activities, and announcements</p>
-        </a>
+        </button>
+      </div>
+
+      <!-- Dynamic Subject Details -->
+      <div id="subjectContent" class="hidden bg-white p-6 rounded-2xl shadow-md">
+        <button id="backBtn" class="text-[#F47C2B] font-semibold mb-4 hover:underline">← Back to Subjects</button>
+        <h2 id="subjectName" class="text-2xl font-semibold text-[#1E4B87] mb-2"></h2>
+        <p id="subjectDesc" class="text-gray-600 mb-6"></p>
+
+        <div class="space-y-3">
+          <h3 class="text-xl font-bold text-[#F47C2B]">Recent Updates</h3>
+          <ul id="subjectUpdates" class="list-disc pl-6 text-gray-700"></ul>
+        </div>
       </div>
     </main>
+
+    <!-- ✅ Load Shared Navbar -->
+    <script>
+      fetch("/parent/components/navbar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          const placeholder = document.getElementById("navbar-placeholder");
+          placeholder.innerHTML = html;
+
+          // ✅ Attach sidebar toggle logic AFTER navbar is loaded
+          const menuToggle = document.getElementById("menuToggle");
+          const mobileSidebar = document.getElementById("mobileSidebar");
+          const sidebarContent = document.getElementById("mobileSidebarContent");
+          const closeSidebar = document.getElementById("closeSidebar");
+
+          menuToggle?.addEventListener("click", () => {
+            mobileSidebar.classList.remove("hidden");
+            setTimeout(() => sidebarContent.classList.remove("-translate-x-full"), 10);
+          });
+
+          closeSidebar?.addEventListener("click", () => {
+            sidebarContent.classList.add("-translate-x-full");
+            setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+          });
+
+          mobileSidebar?.addEventListener("click", (e) => {
+            if (e.target === mobileSidebar) {
+              sidebarContent.classList.add("-translate-x-full");
+              setTimeout(() => mobileSidebar.classList.add("hidden"), 300);
+            }
+          });
+        });
+    </script>
+
+    <script>
+      const subjectsGrid = document.getElementById("subjectsGrid");
+      const subjectContent = document.getElementById("subjectContent");
+      const subjectTitle = document.getElementById("subjectTitle");
+      const backBtn = document.getElementById("backBtn");
+      const subjectName = document.getElementById("subjectName");
+      const subjectDesc = document.getElementById("subjectDesc");
+      const subjectUpdates = document.getElementById("subjectUpdates");
+
+      const subjectData = {
+        English: {
+          desc: "Monitor lessons, reading tasks, and writing activities for English.",
+          updates: ["Vocabulary quiz next week", "Essay submission due Friday", "Reading activity: 'The Little Prince'"],
+        },
+        Math: {
+          desc: "View your child's progress in Math topics and upcoming quizzes.",
+          updates: ["Multiplication test on Tuesday", "Bring ruler and compass", "Homework: page 45 #1–10"],
+        },
+        Filipino: {
+          desc: "Keep track of Filipino lessons and assignments.",
+          updates: ["Talumpati presentation next week", "Basahin: 'Alamat ng Pinya'", "Worksheet submission due Friday"],
+        },
+        "Araling Panlipunan": {
+          desc: "Follow updates about history, geography, and civics lessons.",
+          updates: ["Project: Philippine heroes poster", "Quiz: Regions of Luzon", "Watch assigned documentary"],
+        },
+        HELE: {
+          desc: "Home Economics and Livelihood Education updates and projects.",
+          updates: ["Sewing project due next week", "Bring materials for cooking", "Group presentation on gardening"],
+        },
+        "Christian Living": {
+          desc: "View CL values lessons and spiritual reflections.",
+          updates: ["Reflection paper due Monday", "Memory verse recitation", "Mass participation reminder"],
+        },
+        MAPEH: {
+          desc: "Music, Arts, PE, and Health lessons and activities.",
+          updates: ["Dance performance next week", "Bring art supplies", "PE uniform required every Friday"],
+        },
+        Science: {
+          desc: "Check science experiments, projects, and review materials.",
+          updates: ["Volcano experiment next Wednesday", "Review: States of Matter", "Bring recyclable materials"],
+        },
+      };
+
+      document.querySelectorAll(".subject-card").forEach((card) => {
+        card.addEventListener("click", () => {
+          const subject = card.dataset.subject;
+          const data = subjectData[subject];
+          subjectName.textContent = subject;
+          subjectDesc.textContent = data.desc;
+          subjectUpdates.innerHTML = data.updates.map((u) => `<li>${u}</li>`).join("");
+
+          subjectsGrid.classList.add("hidden");
+          subjectContent.classList.remove("hidden");
+          subjectTitle.textContent = subject;
+        });
+      });
+
+      backBtn.onclick = () => {
+        subjectsGrid.classList.remove("hidden");
+        subjectContent.classList.add("hidden");
+        subjectTitle.textContent = "Subjects";
+      };
+    </script>
   </body>
 </html>

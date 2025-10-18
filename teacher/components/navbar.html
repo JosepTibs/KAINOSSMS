@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- teacher/components/navbar.html -->
+<aside
+  class="w-64 bg-white border-r border-gray-200 shadow-md hidden md:flex flex-col justify-between fixed left-0 top-0 h-full z-40"
+>
+  <div>
+    <!-- Logo -->
+    <div class="flex items-center space-x-2 p-6 border-b">
+      <img src="/public/KainosLogo.png" alt="Kainos Logo" class="h-10 w-10" />
+      <span class="text-2xl font-bold text-[#F47C2B]">Kainos</span>
+    </div>
+
+    <!-- Nav Links -->
+    <nav class="mt-6 flex flex-col space-y-1">
+      <a href="/teacher/index.html" class="nav-link px-6 py-3 text-white bg-[#F47C2B] rounded-r-full font-semibold">
+        Dashboard
+      </a>
+      <a href="/teacher/classes.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">
+        My Classes
+      </a>
+      <a href="/teacher/students.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">
+        Students
+      </a>
+      <a href="/teacher/attendance.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">
+        Attendance
+      </a>
+      <a href="/teacher/announcements.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">
+        Announcements
+      </a>
+      <a href="/teacher/grades.html" class="nav-link px-6 py-3 text-[#1E4B87] hover:bg-[#F47C2B] hover:text-white rounded-r-full">
+        Grades
+      </a>
+    </nav>
+  </div>
+
+  <!-- Profile -->
+  <div class="p-6 border-t">
+    <div class="flex items-center space-x-3">
+      <img src="/assets/profile.png" alt="Teacher" class="h-10 w-10 rounded-full border" />
+      <div>
+        <p class="font-semibold text-[#1E4B87]">Teacher Name</p>
+        <p class="text-sm text-gray-500">Faculty</p>
+      </div>
+    </div>
+    <button
+      id="logout-btn"
+      class="mt-4 w-full text-sm bg-[#F47C2B] text-white font-semibold py-2 rounded-lg hover:bg-[#e36e21] transition"
+    >
+      Log Out
+    </button>
+  </div>
+</aside>
+
+<!-- 📱 Mobile Sidebar -->
+<div id="mobileSidebar" class="fixed inset-0 bg-black bg-opacity-40 hidden z-50">
+  <div
+    id="mobileSidebarContent"
+    class="absolute left-0 top-0 h-full w-64 bg-white shadow-lg p-6 flex flex-col justify-between transform -translate-x-full transition-transform duration-300"
+  >
+    <div>
+      <div class="flex items-center space-x-2 mb-6">
+        <img src="/public/KainosLogo.png" alt="Kainos Logo" class="h-8 w-8" />
+        <span class="text-xl font-bold text-[#F47C2B]">Kainos</span>
+      </div>
+      <nav class="flex flex-col space-y-1">
+        <a href="/teacher/index.html" class="px-4 py-2 rounded bg-[#F47C2B] text-white">Dashboard</a>
+        <a href="/teacher/classes.html" class="px-4 py-2 rounded hover:bg-[#F47C2B] hover:text-white">My Classes</a>
+        <a href="/teacher/students.html" class="px-4 py-2 rounded hover:bg-[#F47C2B] hover:text-white">Students</a>
+        <a href="/teacher/attendance.html" class="px-4 py-2 rounded hover:bg-[#F47C2B] hover:text-white">Attendance</a>
+        <a href="/teacher/announcements.html" class="px-4 py-2 rounded hover:bg-[#F47C2B] hover:text-white">Announcements</a>
+        <a href="/teacher/grades.html" class="px-4 py-2 rounded hover:bg-[#F47C2B] hover:text-white">Grades</a>
+      </nav>
+    </div>
+
+    <div>
+      <div class="flex items-center space-x-3">
+        <img src="/assets/profile.png" class="h-10 w-10 rounded-full border" />
+        <div>
+          <p class="font-semibold text-[#1E4B87]">Teacher Name</p>
+          <p class="text-sm text-gray-500">Faculty</p>
+        </div>
+      </div>
+      <button
+        id="closeSidebar"
+        class="mt-4 w-full text-sm bg-[#F47C2B] text-white font-semibold py-2 rounded-lg"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
